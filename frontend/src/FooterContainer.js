@@ -16,7 +16,7 @@ class FooterContainer extends React.Component {
                             </h4>
                             <div class="row py-3">
                                 <div class="col-4">
-                                    <img src="/src/img1.jpg" alt="..." style={{ width: '100%' }} />
+                                    <img src="https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/08/115-218x150.jpg" alt="..." style={{ width: '100%' }} />
                                 </div>
                                 <div class="col-8">
                                     Modern Monochrome Home with Calm and Cosy Terrace and Steps
@@ -25,7 +25,7 @@ class FooterContainer extends React.Component {
                             </div>
                             <div class="row">
                                 <div class="col-4">
-                                    <img src="/src/img1.jpg" alt="..." style={{ width: '100%' }} />
+                                    <img src="https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/08/111-218x150.jpg" alt="..." style={{ width: '100%' }} />
                                 </div>
                                 <div class="col-8">
                                     Modern Monochrome Home with Calm and Cosy Terrace and Steps
@@ -34,7 +34,7 @@ class FooterContainer extends React.Component {
                             </div>
                             <div class="row py-3">
                                 <div class="col-4">
-                                    <img src="/src/img1.jpg" alt="..." style={{ width: '100%' }} />
+                                    <img src="https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/08/110-218x150.jpg" alt="..." style={{ width: '100%' }} />
                                 </div>
                                 <div class="col-8">
                                     Modern Monochrome Home with Calm and Cosy Terrace and Steps
@@ -49,7 +49,7 @@ class FooterContainer extends React.Component {
                             </h4>
                             <div class="row py-3">
                                 <div class="col-4">
-                                    <img src="/src/img1.jpg" alt="..." style={{ width: '100%' }} />
+                                    <img src="https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/08/54-1-218x150.jpg" alt="..." style={{ width: '100%' }} />
                                 </div>
                                 <div class="col-8">
                                     Modern Monochrome Home with Calm and Cosy Terrace and Steps
@@ -58,7 +58,7 @@ class FooterContainer extends React.Component {
                             </div>
                             <div class="row">
                                 <div class="col-4">
-                                    <img src="/src/img1.jpg" alt="..." style={{ width: '100%' }} />
+                                    <img src="https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/08/28-218x150.jpg" alt="..." style={{ width: '100%' }} />
                                 </div>
                                 <div class="col-8">
                                     Modern Monochrome Home with Calm and Cosy Terrace and Steps
@@ -67,7 +67,7 @@ class FooterContainer extends React.Component {
                             </div>
                             <div class="row py-3">
                                 <div class="col-4">
-                                    <img src="/src/img1.jpg" alt="..." style={{ width: '100%' }} />
+                                    <img src="https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/08/43-2-218x150.jpg" alt="..." style={{ width: '100%' }} />
                                 </div>
                                 <div class="col-8">
                                     Modern Monochrome Home with Calm and Cosy Terrace and Steps
@@ -115,7 +115,10 @@ class FooterContainer extends React.Component {
                     <hr style={{ width: '80%' }} />
                     <div class="row py-4">
                         <div class="col-lg-3 col-12">
-                            <img src="/src/img1.jpg" alt="..." style={{ width: '100%' }} />
+                            
+                            <img src="https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/09/np10blue-white-retina.png" 
+                            class="w-100 h-100"
+                            alt="..."  />
                         </div>
 
                         <div class="col-lg-5 col-12 py-lg-0 py-4">

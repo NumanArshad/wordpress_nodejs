@@ -23,6 +23,7 @@ class Comment extends React.Component {
                         <a href="#contact">Contact</a>
                     </div>
                 </div>
+                <TopHeader />
                 <div class="container-md" style={{marginTop:'10px'}}>
                     <div class="row">
                         <div class="col-lg-8 col-12">

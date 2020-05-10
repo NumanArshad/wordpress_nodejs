@@ -66,7 +66,7 @@ class PostsContainer extends React.Component {
 
                 <div class=" clearfix my-4">
                     <div class="float-left">
-                        <img src="/src/img1.jpg" alt="..." class="rounded-circle" style={{ width: 30, height: 30 }} />
+                        <img src="https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/08/about-image-150x150.jpg" alt="..." class="rounded-circle" style={{ width: 30, height: 30 }} />
                         <span class="ml-1"><strong>Hinalgo Baker</strong></span>
                     </div>
                     <div class="float-right">
@@ -81,7 +81,7 @@ class PostsContainer extends React.Component {
                     <button type="button" class="btn btn-secondary mx-2 d-md-none  d-xs-block">whatsap</button>
                 </div>
 
-                <img src="/src/img1.jpg" class="my-4 w-100" alt="..." />
+                <img src="https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/08/64.jpg" class="my-4 w-100" alt="..." />
                 <div class="container-md px-md-4 px-0">
                     <p>
                         We woke reasonably late following the feast and free flowing wine the night before.
@@ -102,7 +102,7 @@ class PostsContainer extends React.Component {
                 </div>
 
                 <figure class="figure my-2">
-                    <img src="/src/img1.jpg" class="w-100" alt="aderal and flirting with blumia in an attempt to whittle herself" />
+                    <img src="https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/08/girl2.jpg" class="w-100" alt="aderal and flirting with blumia in an attempt to whittle herself" />
                     <figcaption class="figure-caption"><i>
                         aderal and flirting with blumia in an attempt to whittle herself
                         </i>
@@ -117,7 +117,7 @@ class PostsContainer extends React.Component {
                 </p>
 
                 <div class="my-4" >
-                    <img src="/src/img1.jpg" class="customImageGrid my-2"
+                    <img src="https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/10/boy1.jpg" class="customImageGrid my-2"
                         alt="aderal and flirting with blumia in an attempt to whittle herself" />
                     <p class="customPara">
                         Headed over Lions Bridge and made our way to the Sofia Synagogue, then sheltered
@@ -169,7 +169,7 @@ class PostsContainer extends React.Component {
                 <div class="card my-4">
                     <div class="card-body row ">
                         <div class="col-md-4 col-12 text-center">
-                            <img src="/src/img1.jpg" alt="..." style={{ maxWidth: 130 }} />
+                            <img src="https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/08/about-image-150x150.jpg" alt="..." style={{ maxWidth: 130 }} />
                         </div>
                         <div class="col-md-8 col-12 customAuthorPorfile">
                             <header class="py-2" ><b>Armin Vans</b></header>
@@ -192,7 +192,7 @@ class PostsContainer extends React.Component {
                 <div class="row my-4">
                     <div class="col-md-4 col-12 row">
                         <div class="col-md-12 col-4">
-                            <img src="/src/img1.jpg" alt="..." style={{ width: '100%' }} />
+                            <img src="https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/08/63-696x464.jpg" alt="..." style={{ width: '100%' }} />
                         </div>
                         <div class="col-md-12 col-8">
                             <header>  Increase your Endurance Through the Pilates Method</header>
@@ -208,7 +208,7 @@ class PostsContainer extends React.Component {
                     </div>
                     <div class="col-md-4 col-12 row my-md-0 my-2">
                         <div class="col-md-12 col-4">
-                            <img src="/src/img1.jpg" alt="..." style={{ width: '100%' }} />
+                            <img src="https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/08/62-696x464.jpg" alt="..." style={{ width: '100%' }} />
                         </div>
                         <div class="col-md-12 col-8">
                             <header>  Increase your Endurance Through the Pilates Method</header>
@@ -224,7 +224,7 @@ class PostsContainer extends React.Component {
                     </div>
                     <div class="col-md-4 col-12 row">
                         <div class="col-md-12 col-4">
-                            <img src="/src/img1.jpg" alt="..." style={{ width: '100%' }} />
+                            <img src="https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/08/61-696x464.jpg" alt="..." style={{ width: '100%' }} />
                         </div>
                         <div class="col-md-12 col-8">
                             <header>  Increase your Endurance Through the Pilates Method</header>

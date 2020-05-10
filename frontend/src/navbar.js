@@ -34,7 +34,7 @@ class TopHeader extends React.Component {
       <div>
         <div class="d-xs-none d-none d-md-block">
 
-          <div class="row text-light px-5" style={{ backgroundColor: 'black' }}>
+          {/* <div class="row text-light px-5" style={{ backgroundColor: 'black' }}>
             <div class="col-auto">
               ldgmk njfsjjsgjvegb
   </div>
@@ -51,17 +51,27 @@ class TopHeader extends React.Component {
             <div class="col-auto ml-auto">
               Sign in/Join
   </div>
-          </div>
+          </div> */}
         </div>
-        <div class="header">
-          <h2>Scroll Down</h2>
-          <p>Scroll down to see the sticky effect.</p>
+        <div class="container">
+        <div class="row px-4">
+          <div class="col-md-4">
+            <img src="https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/09/np10blue-retina.png"
+              alt=""  class="w-100"/>
+          </div>
+
+          <div class="col-md-8 pt-3">
+            <img src="https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/08/newspaper-rec728.jpg"
+              alt="" class="w-100" />
+            </div>
+          </div>
         </div>
         {/* <ErrorBoundary> */}
         <div id="navbar" className={this.state.showClass ? 'sticky' : null}>
           <a class="active" href="javascript:void(0)">Home</a>
           <a href="javascript:void(0)">News</a>
-          <a href="javascript:void(0)">Contact</a>
+          <a href="javascript:void(0)">Fashion</a>
+          <a href="javascript:void(0)">Gadgets</a>
         </div>
 
 
