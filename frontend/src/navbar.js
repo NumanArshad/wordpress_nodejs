@@ -6,7 +6,7 @@ class TopHeader extends React.Component {
   constructor(props) {
     super(props);
     this.state = { showClass: false, navbaroffset: 0 };
-     this.scrollListener = this.scrollListener.bind(this)
+    this.scrollListener = this.scrollListener.bind(this)
   }
   componentDidMount() {
     window.addEventListener('scroll', this.scrollListener)
@@ -59,12 +59,12 @@ class TopHeader extends React.Component {
         </div>
         {/* <ErrorBoundary> */}
         <div id="navbar" className={this.state.showClass ? 'sticky' : null}>
-            <a class="active" href="javascript:void(0)">Home</a>
-            <a href="javascript:void(0)">News</a>
-            <a href="javascript:void(0)">Contact</a>
-          </div>
+          <a class="active" href="javascript:void(0)">Home</a>
+          <a href="javascript:void(0)">News</a>
+          <a href="javascript:void(0)">Contact</a>
+        </div>
 
-      
+
         {/* </ErrorBoundary> */}
         {/* <button onClick={() => Scroll.animateScroll.scrollToTop()}></button> */}
       </div>

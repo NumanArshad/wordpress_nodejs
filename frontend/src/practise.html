@@ -1,0 +1,2641 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+    <style>
+        .topnav {
+            overflow: hidden;
+            background-color: #f1f1f1;
+            -webkit-box-shadow: 0 8px 6px -6px #999;
+            -moz-box-shadow: 0 8px 6px -6px #999;
+            box-shadow: 0 8px 6px -6px #999;
+        }
+
+        .checked {
+            color: orange;
+        }
+
+        .topnav a {
+            float: left;
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px;
+            text-decoration: none;
+            font-size: 17px;
+            border-bottom: 3px solid transparent;
+        }
+
+        .trendingHover {
+            background-color: #000000;
+            color: white;
+            font-family: Roboto, sans-serif;
+            font-size: 12px;
+            display: inline-block;
+            line-height: 22px;
+            padding-top: 2px;
+            padding-right: 10px;
+            padding-bottom: 1px;
+            padding-left: 10px;
+            cursor: default;
+        }
+
+        .trendingHover:hover {
+            background-color: #4DB2EC;
+        }
+
+        .s-wrap {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .s-move {
+            display: flex;
+            position: relative;
+            top: 0;
+            right: 0;
+        }
+
+        .slide {
+            box-sizing: border-box;
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        @keyframes slideh {
+            0% {
+                right: 0;
+            }
+
+            15% {
+                right: 0;
+            }
+
+            20% {
+                right: 100%;
+            }
+
+            35% {
+                right: 100%;
+            }
+
+            40% {
+                right: 200%;
+            }
+
+            55% {
+                right: 200%;
+            }
+
+            60% {
+                right: 300%;
+            }
+
+            75% {
+                right: 300%;
+            }
+
+            80% {
+                right: 400%;
+            }
+
+            95% {
+                right: 400%;
+            }
+
+            100% {
+                right: 0;
+            }
+        }
+
+        .s-move {
+            animation: slideh linear 25s infinite;
+        }
+
+        .s-move:hover {
+            animation-play-state: paused;
+        }
+
+        .text-block {
+            position: absolute;
+            bottom: 1px;
+            left: 20px;
+            color: white;
+            /* padding-left: 10px; */
+            /* padding-right: 20px; */
+        }
+
+        .newlookblock {
+            position: absolute;
+            bottom: 1px;
+            color: white;
+        }
+
+        .divhHover {
+            background-color: #000000;
+            color: white;
+            font-family: Roboto, sans-serif;
+            font-size: 12px;
+            display: inline-block;
+            line-height: 13px;
+            padding-top: 3px;
+            font-weight: 500;
+            padding-right: 7px;
+            padding-bottom: 3px;
+            padding-left: 7px;
+            cursor: default;
+            text-transform: uppercase;
+        }
+
+        .divhHover:hover {
+            background-color: #4DB2EC;
+        }
+
+        .authorname {
+            font-weight: 700;
+            position: relative;
+            top: 2px;
+            display: inline-block;
+            font-family: 'Open Sans', arial, sans-serif;
+            font-size: 11px;
+            line-height: 1;
+        }
+
+        .date {
+            font-weight: 700;
+            position: relative;
+            top: 2px;
+            display: inline-block;
+            font-family: 'Open Sans', arial, sans-serif;
+            font-size: 11px;
+            line-height: 1;
+        }
+
+        .navlink {
+            color: black;
+        }
+
+        .navlink:hover {
+            color: #f9c100;
+        }
+
+        .navlink1 {
+            color: black;
+        }
+
+        .navlink1:hover {
+            color: #4caf50;
+        }
+
+        .navlink2 {
+            color: black;
+        }
+
+        .navlink2:hover {
+            color: #f44336
+        }
+
+        .fashioHover:hover {
+            color: #f9c100;
+            cursor: pointer;
+        }
+
+        .newlook {
+            background-color: #000000;
+            color: white;
+            font-family: Roboto, sans-serif;
+            font-size: 12px;
+            display: inline-block;
+            line-height: 13px;
+            padding-top: 3px;
+            font-weight: 500;
+            padding-right: 7px;
+            padding-bottom: 3px;
+            padding-left: 7px;
+            cursor: default;
+        }
+
+        .newlook:hover {
+            background-color: #f9c100;
+        }
+
+        .newlookhover:hover {
+            background-color: #f9c100;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <!-- <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
+        <div class="container">
+            <a href="#" class="navbar-brand mr-3">News Xpaper</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link active" href="#">NEWS <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">FASHION</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">GADGETS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">LIFESTYLE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">VIDEO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">FEATURES</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> -->
+
+    <div class="container">
+        <!-- Trending Now -->
+        <div class="container" style="margin: 10px;">
+            <div class="row">
+                <div class="col-SM">
+                    <div class="trendingHover">
+                        TRENDING NOW
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="s-wrap">
+                        <div class="s-move">
+                            <div class="slide">
+                                <p>
+                                    Another Big Apartment Project Slated for Broad Ripple Company
+                                </p>
+                            </div>
+                            <div class="slide">
+                                <p>
+                                    Patricia Urquiola Coats Transparent Glas Tables for Livings
+                                </p>
+                            </div>
+                            <div class="slide">
+                                <p>
+                                    Ambrose Seeks Offers on Downtown Building for Apartments
+                                </p>
+                            </div>
+                            <div class="slide">
+                                <p>
+                                    Another Big Apartment Project Slated for Broad Ripple Company
+                                </p>
+                            </div>
+                            <div class="slide">
+                                <p>
+                                    Patricia Urquiola Coats Transparent Glas Tables for Livings
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6"
+                title="WordPress News Magazine Charts the Most Chic and Fashionable Women of New York City">
+                <img src="/src/Images/a.jpg" alt="Nature"
+                    style="width:100%;height: 100%;background-position: center;background-size: cover;background-repeat: no-repeat;">
+                <div class="text-block bottom-left">
+                    <div class="divhHover">
+                        fashion
+                    </div>
+                    <div style="margin-right: 5px;">
+                        <h3>WordPress News Magazine Charts the Most Chic and Fashionable Women of New York City</h3>
+                    </div>
+                    <h6>
+                        <span class="authorname">Armin Vans</span>
+                        <span class="authorname">-</span>
+                        <span class="date">August 7, 2019</span>
+                    </h6>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6">
+                <div class="row">
+                    <div class="col">
+                        <img src="/src/Images/b.jpg" alt="Nature"
+                            style="width:100%;height: 225px;background-position: center;background-size: cover;background-repeat: no-repeat;">
+                        <div class="text-block bottom-left">
+                            <div class="divhHover">
+                                GADGETS
+                            </div>
+                            <div style="margin-right: 5px;">
+                                <h3 style="font-family: Verdana,Geneva,sans-serif;">
+                                    Game Changing Virtual Reality Console Hits the Market
+                                </h3>
+                            </div>
+                            <h6>
+                                <span class="authorname">Armin Vans</span>
+                                <span class="authorname">-</span>
+                                <span class="date">August 7, 2019</span>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col" style="margin-top: 10px;">
+                        <div class="row">
+                            <div class="col">
+                                <img src="/src/Images/c.jpg" alt="Nature"
+                                    style="width:100%;height: 225px;background-position: center;background-size: cover;background-repeat: no-repeat;">
+                                <div class="text-block bottom-left">
+                                    <div class="divhHover">
+                                        TRAVEL
+                                    </div>
+                                    <div style="margin-right: 7px;">
+                                        <h3
+                                            style="font-family: 'Roboto',sans-serif;white-space: normal;font-size: 16px;line-height: 21px;font-weight: 500;">
+                                            Discover the Most Magical Sunset in Santorini
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <img src="/src/Images/d.jpg" alt="Nature"
+                                    style="width:100%;height: 225px;background-position: center;background-size: cover;background-repeat: no-repeat;">
+                                <div class="text-block bottom-left">
+                                    <div class="divhHover">
+                                        REVIEWS
+                                    </div>
+                                    <div style="margin-right: 9px;">
+                                        <h3
+                                            style="font-family: 'Roboto',sans-serif;white-space: normal;font-size: 16px;line-height: 21px;font-weight: 500;">
+                                            Computer Filters Noise to Make You a Better Listener
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Don't Miss -->
+        <div style="margin-top: 30px;">
+            <div class="row">
+                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12"
+                    style="position: relative;font-family: 'Open Sans',arial,sans-serif;font-weight: 700;font-size: 11px;line-height: 21px;width: 100%;">
+                    <h4
+                        style="text-align: left;font-family: 'Roboto',sans-serif;font-size: 14px;line-height: 1;margin-top: 0;margin-bottom: 26px;border-bottom-width: 2px;border-bottom-style: solid;border-bottom-color: #f9c100;color: #f9c100;font-weight: 400">
+                        <span
+                            style="text-transform: uppercase !important;display: inline-block;line-height: 17px;padding-top: 7px;padding-right: 12px;padding-bottom: 4px;padding-left: 12px;background-color: #f9c100;color: #fff;text-align: left;font-family: 'Roboto',sans-serif;font-size: 14px;font-weight: 400;text-transform: uppercase;">
+                            don't miss
+                        </span>
+                        <span style="text-align: right;float: right;">
+                            <ul class="nav flex-column flex-sm-row" id="myTab">
+                                <li class="nav-item">
+                                    <a class="flex-sm text-sm-center nav-link navlink" id="all-tab" data-toggle="tab"
+                                        href="#all" role="tab" aria-controls="all" aria-selected="true">
+                                        All
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="flex-sm-fill text-sm-center nav-link navlink" id="stylehunter-tab"
+                                        data-toggle="tab" href="#stylehunter" role="tab" aria-controls="stylehunter"
+                                        aria-selected="false">
+                                        Style Hunter
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="flex-sm-fill text-sm-center nav-link navlink" id="vogue-tab"
+                                        data-toggle="tab" href="#vogue" role="tab" aria-controls="vogue"
+                                        aria-selected="false">
+                                        Vogue
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="flex-sm-fill text-sm-center nav-link navlink" id="healthfitness-tab"
+                                        data-toggle="tab" href="#healthfitness" role="tab" aria-controls="healthfitness"
+                                        aria-selected="false">
+                                        Health & Fitness
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="flex-sm-fill text-sm-center nav-link navlink" id="travel-tab"
+                                        data-toggle="tab" href="#travel" role="tab" aria-controls="travel"
+                                        aria-selected="false">
+                                        Travel
+                                    </a>
+                                </li>
+                            </ul>
+                        </span>
+                    </h4>
+
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                    <img src="/src/Images/jkj.jpg" alt="Nature"
+                                        style="width:100%;height: 225px;background-position: center;background-size: cover;background-repeat: no-repeat;"
+                                        title="Top Fashion Trends to Look for in Every Important Collection">
+                                    <div
+                                        style="padding: 13px 0 0;width: 100%;margin-bottom: 0;z-index: 1;border: 0 solid #eaeaea;min-height: 0;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;display: block;">
+                                        <h3 class="fashioHover"
+                                            style="font-size: 21px;line-height: 25px;margin: 0 0 6px;word-wrap: break-word;font-weight: 400"
+                                            title="Top Fashion Trends to Look for in Every Important Collection">
+                                            Top Fashion Trends to Look for in Every Important Collection
+                                        </h3>
+                                        <div>
+                                            <span
+                                                style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                                <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                            </span>
+                                            <span>-</span>
+                                            <span style="color: #aaa;position: relative;top: 2px;">
+                                                <time>August 7, 2019</time>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                        We woke reasonably late following the feast and free flowing wine the night
+                                        before. After gathering ourselves and our packs, we...
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                    <div class="mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <img src="/src/Images/e.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                                style="padding-left: 10px;">
+                                                <div class="fashioHover"
+                                                    style="font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Spring Fashion Show at the University of Michigan Has Started
+                                                </div>
+                                                <div style=" margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <img src="/src/Images/f.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                                style="padding-left: 10px;">
+                                                <div class="fashioHover"
+                                                    style="font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Laptop with 128-bit Processor, 32GB of RAM and 24MP Front Camera
+                                                </div>
+                                                <div style=" margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <img src="/src/Images/g.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                                style="padding-left: 10px;">
+                                                <div class="fashioHover"
+                                                    style="font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Flying Over the Grand Canyon with a Helicopter
+                                                </div>
+                                                <div style=" margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <img src="/src/Images/h.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                                style="padding-left: 10px;">
+                                                <div class="fashioHover"
+                                                    style="font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    The Ultimate Cruise Experience in the Carribean
+                                                </div>
+                                                <div style=" margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="stylehunter" role="tabpanel" aria-labelledby="stylehunter-tab">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                    <img src="/src/Images/jkj.jpg" alt="Nature"
+                                        style="width:100%;height: 225px;background-position: center;background-size: cover;background-repeat: no-repeat;"
+                                        title="Top Fashion Trends to Look for in Every Important Collection">
+                                    <div
+                                        style="padding: 13px 0 0;width: 100%;margin-bottom: 0;z-index: 1;border: 0 solid #eaeaea;min-height: 0;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;display: block;">
+                                        <h3 class="fashioHover"
+                                            style="font-size: 21px;line-height: 25px;margin: 0 0 6px;word-wrap: break-word;font-weight: 400"
+                                            title="Top Fashion Trends to Look for in Every Important Collection">
+                                            Top Fashion Trends to Look for in Every Important Collection
+                                        </h3>
+                                        <div>
+                                            <span
+                                                style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                                <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                            </span>
+                                            <span>-</span>
+                                            <span style="color: #aaa;position: relative;top: 2px;">
+                                                <time>August 7, 2019</time>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                        We woke reasonably late following the feast and free flowing wine the night
+                                        before. After gathering ourselves and our packs, we...
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                    <div class="mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <img src="/src/Images/e.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                                style="padding-left: 10px;">
+                                                <div class="fashioHover"
+                                                    style="font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Spring Fashion Show at the University of Michigan Has Started
+                                                </div>
+                                                <div style=" margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <img src="/src/Images/f.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                                style="padding-left: 10px;">
+                                                <div class="fashioHover"
+                                                    style="font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Laptop with 128-bit Processor, 32GB of RAM and 24MP Front Camera
+                                                </div>
+                                                <div style=" margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <img src="/src/Images/g.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                                style="padding-left: 10px;">
+                                                <div class="fashioHover"
+                                                    style="font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Flying Over the Grand Canyon with a Helicopter
+                                                </div>
+                                                <div style=" margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <img src="/src/Images/h.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                                style="padding-left: 10px;">
+                                                <div class="fashioHover"
+                                                    style="font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    The Ultimate Cruise Experience in the Carribean
+                                                </div>
+                                                <div style=" margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="vogue" role="tabpanel" aria-labelledby="vogue-tab">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                    <img src="/src/Images/jkj.jpg" alt="Nature"
+                                        style="width:100%;height: 225px;background-position: center;background-size: cover;background-repeat: no-repeat;"
+                                        title="Top Fashion Trends to Look for in Every Important Collection">
+                                    <div
+                                        style="padding: 13px 0 0;width: 100%;margin-bottom: 0;z-index: 1;border: 0 solid #eaeaea;min-height: 0;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;display: block;">
+                                        <h3 class="fashioHover"
+                                            style="font-size: 21px;line-height: 25px;margin: 0 0 6px;word-wrap: break-word;font-weight: 400"
+                                            title="Top Fashion Trends to Look for in Every Important Collection">
+                                            Top Fashion Trends to Look for in Every Important Collection
+                                        </h3>
+                                        <div>
+                                            <span
+                                                style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                                <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                            </span>
+                                            <span>-</span>
+                                            <span style="color: #aaa;position: relative;top: 2px;">
+                                                <time>August 7, 2019</time>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                        We woke reasonably late following the feast and free flowing wine the night
+                                        before. After gathering ourselves and our packs, we...
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                    <div class="mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <img src="/src/Images/e.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                                style="padding-left: 10px;">
+                                                <div class="fashioHover"
+                                                    style="font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Spring Fashion Show at the University of Michigan Has Started
+                                                </div>
+                                                <div style=" margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <img src="/src/Images/f.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                                style="padding-left: 10px;">
+                                                <div class="fashioHover"
+                                                    style="font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Laptop with 128-bit Processor, 32GB of RAM and 24MP Front Camera
+                                                </div>
+                                                <div style=" margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <img src="/src/Images/g.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                                style="padding-left: 10px;">
+                                                <div class="fashioHover"
+                                                    style="font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Flying Over the Grand Canyon with a Helicopter
+                                                </div>
+                                                <div style=" margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <img src="/src/Images/h.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                                style="padding-left: 10px;">
+                                                <div class="fashioHover"
+                                                    style="font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    The Ultimate Cruise Experience in the Carribean
+                                                </div>
+                                                <div style=" margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="healthfitness" role="tabpanel"
+                            aria-labelledby="healthfitness-tab">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                    <img src="/src/Images/jkj.jpg" alt="Nature"
+                                        style="width:100%;height: 225px;background-position: center;background-size: cover;background-repeat: no-repeat;"
+                                        title="Top Fashion Trends to Look for in Every Important Collection">
+                                    <div
+                                        style="padding: 13px 0 0;width: 100%;margin-bottom: 0;z-index: 1;border: 0 solid #eaeaea;min-height: 0;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;display: block;">
+                                        <h3 class="fashioHover"
+                                            style="font-size: 21px;line-height: 25px;margin: 0 0 6px;word-wrap: break-word;font-weight: 400"
+                                            title="Top Fashion Trends to Look for in Every Important Collection">
+                                            Top Fashion Trends to Look for in Every Important Collection
+                                        </h3>
+                                        <div>
+                                            <span
+                                                style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                                <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                            </span>
+                                            <span>-</span>
+                                            <span style="color: #aaa;position: relative;top: 2px;">
+                                                <time>August 7, 2019</time>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                        We woke reasonably late following the feast and free flowing wine the night
+                                        before. After gathering ourselves and our packs, we...
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                    <div class="mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <img src="/src/Images/e.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                                style="padding-left: 10px;">
+                                                <div class="fashioHover"
+                                                    style="font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Spring Fashion Show at the University of Michigan Has Started
+                                                </div>
+                                                <div style=" margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <img src="/src/Images/f.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                                style="padding-left: 10px;">
+                                                <div class="fashioHover"
+                                                    style="font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Laptop with 128-bit Processor, 32GB of RAM and 24MP Front Camera
+                                                </div>
+                                                <div style=" margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <img src="/src/Images/g.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                                style="padding-left: 10px;">
+                                                <div class="fashioHover"
+                                                    style="font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Flying Over the Grand Canyon with a Helicopter
+                                                </div>
+                                                <div style=" margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <img src="/src/Images/h.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                                style="padding-left: 10px;">
+                                                <div class="fashioHover"
+                                                    style="font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    The Ultimate Cruise Experience in the Carribean
+                                                </div>
+                                                <div style=" margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="travel" role="tabpanel" aria-labelledby="travel-tab">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                    <img src="/src/Images/jkj.jpg" alt="Nature"
+                                        style="width:100%;height: 225px;background-position: center;background-size: cover;background-repeat: no-repeat;"
+                                        title="Top Fashion Trends to Look for in Every Important Collection">
+                                    <div
+                                        style="padding: 13px 0 0;width: 100%;margin-bottom: 0;z-index: 1;border: 0 solid #eaeaea;min-height: 0;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;display: block;">
+                                        <h3 class="fashioHover"
+                                            style="font-size: 21px;line-height: 25px;margin: 0 0 6px;word-wrap: break-word;font-weight: 400"
+                                            title="Top Fashion Trends to Look for in Every Important Collection">
+                                            Top Fashion Trends to Look for in Every Important Collection
+                                        </h3>
+                                        <div>
+                                            <span
+                                                style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                                <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                            </span>
+                                            <span>-</span>
+                                            <span style="color: #aaa;position: relative;top: 2px;">
+                                                <time>August 7, 2019</time>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                        We woke reasonably late following the feast and free flowing wine the night
+                                        before. After gathering ourselves and our packs, we...
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                    <div class="mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <img src="/src/Images/e.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                                style="padding-left: 10px;">
+                                                <div class="fashioHover"
+                                                    style="font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Spring Fashion Show at the University of Michigan Has Started
+                                                </div>
+                                                <div style=" margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <img src="/src/Images/f.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                                style="padding-left: 10px;">
+                                                <div class="fashioHover"
+                                                    style="font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Laptop with 128-bit Processor, 32GB of RAM and 24MP Front Camera
+                                                </div>
+                                                <div style=" margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <img src="/src/Images/g.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                                style="padding-left: 10px;">
+                                                <div class="fashioHover"
+                                                    style="font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Flying Over the Grand Canyon with a Helicopter
+                                                </div>
+                                                <div style=" margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <img src="/src/Images/h.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                                style="padding-left: 10px;">
+                                                <div class="fashioHover"
+                                                    style="font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    The Ultimate Cruise Experience in the Carribean
+                                                </div>
+                                                <div style=" margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12"
+                    style="position: relative;color: #000;font-family: 'Open Sans',arial,sans-serif;font-weight: 700;font-size: 11px;line-height: 21px;">
+                    <h4
+                        style="text-align: left;font-family: 'Roboto',sans-serif;font-size: 14px;line-height: 1;margin-top: 0;margin-bottom: 26px;border-bottom-width: 2px;border-bottom-style: solid;border-bottom-color: rgb(34, 34, 34);color: #111;font-weight: 400">
+                        <span
+                            style="text-transform: uppercase !important;display: inline-block;line-height: 17px;padding-top: 7px;padding-right: 12px;padding-bottom: 4px;padding-left: 12px;background-color: #222;color: #fff;text-align: left;font-family: 'Roboto',sans-serif;font-size: 14px;font-weight: 400;">stay
+                            connected</span>
+                    </h4>
+                    <div class="row">
+                        <div class="col">
+                            <div
+                                style="background-position: -17px -17px;background-color: #516eab;display: inline-block;width: 40px;height: 40px;margin-right: 5px;position: relative;background-image: url(https://demo.tagdiv.com/newspaper_pro/wp-content/plugins/td-composer/legacy/Newspaper/assets//src/Images/sprite/elements.png);">
+                            </div>
+                            <span
+                                style="top: -15px;padding: 0 0 0 9px;position: relative;font-family: 'Open Sans',arial,sans-serif;font-weight: 700;font-size: 11px;">19,426</span>
+                            <span style="top: -15px;padding: 0 0 0 9px;position: relative;">Fans</span>
+                        </div>
+                        <div class="col">
+                            <span
+                                style="margin-top: 13px;float: right;height: 16px;line-height: 15px;text-transform: uppercase;color: black;text-align: right;">
+                                Like
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div
+                                style="background-position: -16px -431px;background-color: #29c5f6;display: inline-block;width: 40px;height: 40px;margin-right: 5px;position: relative;background-image: url(http://demo.tagdiv.com/newspaper_pro/wp-content/plugins/td-composer/legacy/Newspaper/assets//src/Images/sprite/elements.png);">
+                            </div>
+                            <span
+                                style="top: -15px;padding: 0 0 0 9px;position: relative;font-family: 'Open Sans',arial,sans-serif;font-weight: 700;font-size: 11px;">2,121</span>
+                            <span style="top: -15px;padding: 0 0 0 9px;position: relative;">Followers</span>
+                        </div>
+                        <div class="col">
+                            <span
+                                style="margin-top: 13px;float: right;height: 16px;line-height: 15px;text-transform: uppercase;color: black;text-align: right;">
+                                Follow
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div
+                                style="background-position: -15px -380px;background-color: #e14e42;display: inline-block;width: 40px;height: 40px;height: 40px; margin-right: 5px;position: relative;background-image: url(https://demo.tagdiv.com/newspaper_pro/wp-content/plugins/td-composer/legacy/Newspaper/assets//src/Images/sprite/elements.png);background-repeat: no-repeat;box-sizing: border-box;">
+                            </div>
+                            <span
+                                style="top: -15px;padding: 0 0 0 9px;position: relative;font-family: 'Open Sans',arial,sans-serif;font-weight: 700;font-size: 11px;">2,121</span>
+                            <span style="top: -15px;padding: 0 0 0 9px;position: relative;">Subscriber</span>
+                        </div>
+                        <div class="col">
+                            <span
+                                style="margin-top: 13px;float: right;height: 16px;line-height: 15px;text-transform: uppercase;color: black;text-align: right;">
+                                subscribe
+                            </span>
+                        </div>
+                    </div>
+                    <div class="text-center" style="margin-top: 20px;">
+                        <img src="https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/08/newspaper-rec300c.jpg"
+                            alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lifestyle News -->
+        <div style="margin-top: 30px;">
+            <div class="row">
+                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12"
+                    style="position: relative;font-family: 'Open Sans',arial,sans-serif;font-weight: 700;font-size: 11px;line-height: 21px;width: 100%;">
+                    <h4
+                        style="text-align: left;font-family: 'Roboto',sans-serif;font-size: 14px;line-height: 1;margin-top: 0;margin-bottom: 26px;border-bottom-width: 2px;border-bottom-style: solid;border-bottom-color: #4caf50;color: #4caf50;font-weight: 400">
+                        <span
+                            style="text-transform: uppercase !important;display: inline-block;line-height: 17px;padding-top: 7px;padding-right: 12px;padding-bottom: 4px;padding-left: 12px;background-color: #4caf50;color: #fff;text-align: left;font-family: 'Roboto',sans-serif;font-size: 14px;font-weight: 400;text-transform: uppercase;">
+                            Lifestyle news
+                        </span>
+                        <span style="text-align: right;float: right;">
+                            <ul class="nav flex-column flex-sm-row" id="myTab">
+                                <li class="nav-item">
+                                    <a class="flex-sm text-sm-center nav-link navlink" id="all1-tab" data-toggle="tab"
+                                        href="#all1" role="tab" aria-controls="all1" aria-selected="true">
+                                        All
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="flex-sm-fill text-sm-center nav-link navlink" id="travel-tab"
+                                        data-toggle="tab" href="#travel1" role="tab" aria-controls="travel1"
+                                        aria-selected="false">
+                                        Travel
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="flex-sm-fill text-sm-center nav-link navlink" id="recipes1-tab"
+                                        data-toggle="tab" href="#recipes1" role="tab" aria-controls="recipes1"
+                                        aria-selected="false">
+                                        Recipes
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="flex-sm-fill text-sm-center nav-link navlink" id="travel-tab"
+                                        data-toggle="tab" href="#music1" role="tab" aria-controls="music1"
+                                        aria-selected="false">
+                                        Music
+                                    </a>
+                                </li>
+                            </ul>
+                        </span>
+                    </h4>
+
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="all1" role="tabpanel" aria-labelledby="all1-tab">
+                            <div class="row">
+                                <div class="col">
+                                    <div>
+                                        <img class="card-img-top" src="/src/Images/i.jpg" alt="Card image cap">
+                                        <div style="margin-top: 10px;">
+                                            <h5 class="card-title">
+                                                Now Iss the Time to Think About Your Small-Business Success
+                                            </h5>
+
+                                            <span
+                                                style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                                <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                            </span>
+                                            <span>-</span>
+                                            <span style="color: #aaa;position: relative;top: 2px;">
+                                                <time>June 19, 2019</time>
+                                            </span>
+                                            <div
+                                                style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                                We woke reasonably late following the feast and free flowing wine the
+                                                night
+                                                before. After gathering ourselves and our
+                                                packs, we...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-top: 25px;">
+                                        <div class="mb-3" style="max-width: 540px;">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-4">
+                                                    <img src="/src/Images/e.jpg" class="card-img" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="fashioHover"
+                                                        style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                        How to Burn Calories with Pleasant Activities
+                                                    </div>
+                                                    <div style="margin-left: 10px; margin-top: 10px;">
+                                                        <span style="color: #aaa;position: relative;top: 2px;">
+                                                            <time>August 7, 2019</time>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3" style="max-width: 540px;">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-4">
+                                                    <img src="/src/Images/f.jpg" class="card-img" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="fashioHover"
+                                                        style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                        How To Use Basic Design Principles To Decorate Your Home
+                                                    </div>
+                                                    <div style="margin-left: 10px; margin-top: 10px;">
+                                                        <span style="color: #aaa;position: relative;top: 2px;">
+                                                            <time>August 7, 2019</time>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div>
+                                        <img class="card-img-top" src="/src/Images/n.jpg" alt="Card image cap">
+                                        <div style="margin-top: 10px;">
+                                            <h5 class="card-title">
+                                                Best Things You Can Do on a Solo Mountain Climb
+                                            </h5>
+
+                                            <span
+                                                style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                                <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                            </span>
+                                            <span>-</span>
+                                            <span style="color: #aaa;position: relative;top: 2px;">
+                                                <time>June 19, 2019</time>
+                                            </span>
+                                            <div
+                                                style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                                We woke reasonably late following the feast and free flowing wine the
+                                                night
+                                                before. After gathering ourselves and our
+                                                packs, we...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-top: 25px;">
+                                        <div class="mb-3" style="max-width: 540px;">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-4">
+                                                    <img src="/src/Images/g.jpg" class="card-img" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="fashioHover"
+                                                        style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                        Creative Decorating with Houseplants, from Floor to Ceiling
+                                                    </div>
+                                                    <div style="margin-left: 10px; margin-top: 10px;">
+                                                        <span style="color: #aaa;position: relative;top: 2px;">
+                                                            <time>August 7, 2019</time>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3" style="max-width: 540px;">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-4">
+                                                    <img src="/src/Images/h.jpg" class="card-img" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="fashioHover"
+                                                        style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                        Creative Decorating with Houseplants, from Floor to Ceiling
+                                                    </div>
+                                                    <div style="margin-left: 10px; margin-top: 10px;">
+                                                        <span style="color: #aaa;position: relative;top: 2px;">
+                                                            <time>August 7, 2019</time>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="travel1" role="tabpanel" aria-labelledby="travel1-tab">
+                            <div class="row">
+                                <div class="col">
+                                    <div>
+                                        <img class="card-img-top" src="/src/Images/i.jpg" alt="Card image cap">
+                                        <div style="margin-top: 10px;">
+                                            <h5 class="card-title">
+                                                Now Iss the Time to Think About Your Small-Business Success
+                                            </h5>
+
+                                            <span
+                                                style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                                <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                            </span>
+                                            <span>-</span>
+                                            <span style="color: #aaa;position: relative;top: 2px;">
+                                                <time>June 19, 2019</time>
+                                            </span>
+                                            <div
+                                                style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                                We woke reasonably late following the feast and free flowing wine the
+                                                night
+                                                before. After gathering ourselves and our
+                                                packs, we...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-top: 25px;">
+                                        <div class="mb-3" style="max-width: 540px;">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-4">
+                                                    <img src="/src/Images/e.jpg" class="card-img" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="fashioHover"
+                                                        style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                        How to Burn Calories with Pleasant Activities
+                                                    </div>
+                                                    <div style="margin-left: 10px; margin-top: 10px;">
+                                                        <span style="color: #aaa;position: relative;top: 2px;">
+                                                            <time>August 7, 2019</time>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3" style="max-width: 540px;">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-4">
+                                                    <img src="/src/Images/f.jpg" class="card-img" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="fashioHover"
+                                                        style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                        How To Use Basic Design Principles To Decorate Your Home
+                                                    </div>
+                                                    <div style="margin-left: 10px; margin-top: 10px;">
+                                                        <span style="color: #aaa;position: relative;top: 2px;">
+                                                            <time>August 7, 2019</time>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div>
+                                        <img class="card-img-top" src="/src/Images/n.jpg" alt="Card image cap">
+                                        <div style="margin-top: 10px;">
+                                            <h5 class="card-title">
+                                                Best Things You Can Do on a Solo Mountain Climb
+                                            </h5>
+
+                                            <span
+                                                style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                                <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                            </span>
+                                            <span>-</span>
+                                            <span style="color: #aaa;position: relative;top: 2px;">
+                                                <time>June 19, 2019</time>
+                                            </span>
+                                            <div
+                                                style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                                We woke reasonably late following the feast and free flowing wine the
+                                                night
+                                                before. After gathering ourselves and our
+                                                packs, we...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-top: 25px;">
+                                        <div class="mb-3" style="max-width: 540px;">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-4">
+                                                    <img src="/src/Images/g.jpg" class="card-img" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="fashioHover"
+                                                        style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                        Creative Decorating with Houseplants, from Floor to Ceiling
+                                                    </div>
+                                                    <div style="margin-left: 10px; margin-top: 10px;">
+                                                        <span style="color: #aaa;position: relative;top: 2px;">
+                                                            <time>August 7, 2019</time>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3" style="max-width: 540px;">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-4">
+                                                    <img src="/src/Images/h.jpg" class="card-img" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="fashioHover"
+                                                        style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                        Creative Decorating with Houseplants, from Floor to Ceiling
+                                                    </div>
+                                                    <div style="margin-left: 10px; margin-top: 10px;">
+                                                        <span style="color: #aaa;position: relative;top: 2px;">
+                                                            <time>August 7, 2019</time>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="recipes1" role="tabpanel" aria-labelledby="recipes1-tab">
+                            <div class="row">
+                                <div class="col">
+                                    <div>
+                                        <img class="card-img-top" src="/src/Images/i.jpg" alt="Card image cap">
+                                        <div style="margin-top: 10px;">
+                                            <h5 class="card-title">
+                                                Now Iss the Time to Think About Your Small-Business Success
+                                            </h5>
+
+                                            <span
+                                                style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                                <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                            </span>
+                                            <span>-</span>
+                                            <span style="color: #aaa;position: relative;top: 2px;">
+                                                <time>June 19, 2019</time>
+                                            </span>
+                                            <div
+                                                style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                                We woke reasonably late following the feast and free flowing wine the
+                                                night
+                                                before. After gathering ourselves and our
+                                                packs, we...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-top: 25px;">
+                                        <div class="mb-3" style="max-width: 540px;">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-4">
+                                                    <img src="/src/Images/e.jpg" class="card-img" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="fashioHover"
+                                                        style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                        How to Burn Calories with Pleasant Activities
+                                                    </div>
+                                                    <div style="margin-left: 10px; margin-top: 10px;">
+                                                        <span style="color: #aaa;position: relative;top: 2px;">
+                                                            <time>August 7, 2019</time>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3" style="max-width: 540px;">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-4">
+                                                    <img src="/src/Images/f.jpg" class="card-img" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="fashioHover"
+                                                        style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                        How To Use Basic Design Principles To Decorate Your Home
+                                                    </div>
+                                                    <div style="margin-left: 10px; margin-top: 10px;">
+                                                        <span style="color: #aaa;position: relative;top: 2px;">
+                                                            <time>August 7, 2019</time>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div>
+                                        <img class="card-img-top" src="/src/Images/n.jpg" alt="Card image cap">
+                                        <div style="margin-top: 10px;">
+                                            <h5 class="card-title">
+                                                Best Things You Can Do on a Solo Mountain Climb
+                                            </h5>
+
+                                            <span
+                                                style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                                <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                            </span>
+                                            <span>-</span>
+                                            <span style="color: #aaa;position: relative;top: 2px;">
+                                                <time>June 19, 2019</time>
+                                            </span>
+                                            <div
+                                                style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                                We woke reasonably late following the feast and free flowing wine the
+                                                night
+                                                before. After gathering ourselves and our
+                                                packs, we...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-top: 25px;">
+                                        <div class="mb-3" style="max-width: 540px;">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-4">
+                                                    <img src="/src/Images/g.jpg" class="card-img" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="fashioHover"
+                                                        style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                        Creative Decorating with Houseplants, from Floor to Ceiling
+                                                    </div>
+                                                    <div style="margin-left: 10px; margin-top: 10px;">
+                                                        <span style="color: #aaa;position: relative;top: 2px;">
+                                                            <time>August 7, 2019</time>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3" style="max-width: 540px;">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-4">
+                                                    <img src="/src/Images/h.jpg" class="card-img" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="fashioHover"
+                                                        style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                        Creative Decorating with Houseplants, from Floor to Ceiling
+                                                    </div>
+                                                    <div style="margin-left: 10px; margin-top: 10px;">
+                                                        <span style="color: #aaa;position: relative;top: 2px;">
+                                                            <time>August 7, 2019</time>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="music1" role="tabpanel" aria-labelledby="music1-tab">
+                            <div class="row">
+                                <div class="col">
+                                    <div>
+                                        <img class="card-img-top" src="/src/Images/i.jpg" alt="Card image cap">
+                                        <div style="margin-top: 10px;">
+                                            <h5 class="card-title">
+                                                Now Iss the Time to Think About Your Small-Business Success
+                                            </h5>
+
+                                            <span
+                                                style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                                <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                            </span>
+                                            <span>-</span>
+                                            <span style="color: #aaa;position: relative;top: 2px;">
+                                                <time>June 19, 2019</time>
+                                            </span>
+                                            <div
+                                                style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                                We woke reasonably late following the feast and free flowing wine the
+                                                night
+                                                before. After gathering ourselves and our
+                                                packs, we...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-top: 25px;">
+                                        <div class="mb-3" style="max-width: 540px;">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-4">
+                                                    <img src="/src/Images/e.jpg" class="card-img" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="fashioHover"
+                                                        style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                        How to Burn Calories with Pleasant Activities
+                                                    </div>
+                                                    <div style="margin-left: 10px; margin-top: 10px;">
+                                                        <span style="color: #aaa;position: relative;top: 2px;">
+                                                            <time>August 7, 2019</time>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3" style="max-width: 540px;">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-4">
+                                                    <img src="/src/Images/f.jpg" class="card-img" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="fashioHover"
+                                                        style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                        How To Use Basic Design Principles To Decorate Your Home
+                                                    </div>
+                                                    <div style="margin-left: 10px; margin-top: 10px;">
+                                                        <span style="color: #aaa;position: relative;top: 2px;">
+                                                            <time>August 7, 2019</time>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div>
+                                        <img class="card-img-top" src="/src/Images/n.jpg" alt="Card image cap">
+                                        <div style="margin-top: 10px;">
+                                            <h5 class="card-title">
+                                                Best Things You Can Do on a Solo Mountain Climb
+                                            </h5>
+
+                                            <span
+                                                style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                                <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                            </span>
+                                            <span>-</span>
+                                            <span style="color: #aaa;position: relative;top: 2px;">
+                                                <time>June 19, 2019</time>
+                                            </span>
+                                            <div
+                                                style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                                We woke reasonably late following the feast and free flowing wine the
+                                                night
+                                                before. After gathering ourselves and our
+                                                packs, we...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-top: 25px;">
+                                        <div class="mb-3" style="max-width: 540px;">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-4">
+                                                    <img src="/src/Images/g.jpg" class="card-img" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="fashioHover"
+                                                        style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                        Creative Decorating with Houseplants, from Floor to Ceiling
+                                                    </div>
+                                                    <div style="margin-left: 10px; margin-top: 10px;">
+                                                        <span style="color: #aaa;position: relative;top: 2px;">
+                                                            <time>August 7, 2019</time>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3" style="max-width: 540px;">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-4">
+                                                    <img src="/src/Images/h.jpg" class="card-img" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="fashioHover"
+                                                        style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                        Creative Decorating with Houseplants, from Floor to Ceiling
+                                                    </div>
+                                                    <div style="margin-left: 10px; margin-top: 10px;">
+                                                        <span style="color: #aaa;position: relative;top: 2px;">
+                                                            <time>August 7, 2019</time>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <h4
+                        style="text-align: left;font-family: 'Roboto',sans-serif;font-size: 14px;line-height: 1;margin-top: 10px;margin-bottom: 26px;border-bottom-width: 2px;border-bottom-style: solid;border-bottom-color: #607d8b;color: #607d8b;font-weight: 400">
+                        <span
+                            style="text-transform: uppercase !important;display: inline-block;line-height: 17px;padding-top: 7px;padding-right: 12px;padding-bottom: 4px;padding-left: 12px;background-color: #607d8b;color: #fff;text-align: left;font-family: 'Roboto',sans-serif;font-size: 14px;font-weight: 400;text-transform: uppercase;">
+                            HOUSE DESIGN
+                        </span>
+                    </h4>
+                    <div class="row">
+                        <div class="col">
+                            <div style="margin-top: 10px;">
+                                <img class="card-img-top" src="/src/Images/q.jpg" alt="Card image cap">
+                                <h5 class="card-title"
+                                    style="padding: 7px 0 0;width: 100%;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;font-weight: 500 !important;font-size: 14px !important;">
+                                    Modern Monochrome Home with Calm and Cosy Terrace and Steps
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div style="margin-top: 10px;">
+                                <img class="card-img-top" src="/src/Images/r.jpg" alt="Card image cap">
+                                <h5 class="card-title"
+                                    style="padding: 7px 0 0;width: 100%;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;font-weight: 500 !important;font-size: 14px !important;">
+                                    Scandinavian Boho Three-bed Decorated with Neutral Tones
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div style="margin-top: 10px;">
+                                <img class="card-img-top" src="/src/Images/s.jpg" alt="Card image cap">
+                                <h5 class="card-title"
+                                    style="padding: 7px 0 0;width: 100%;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;font-weight: 500 !important;font-size: 14px !important;">
+                                    Luxurious Four-Bedroom House with Roman Stone Bath House
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12"
+                    style="position: relative;color: #000;font-family: 'Open Sans',arial,sans-serif;font-weight: 700;font-size: 11px;line-height: 21px;">
+                    <h4
+                        style="text-align: left;font-family: 'Roboto',sans-serif;font-size: 14px;line-height: 1;margin-top: 0;margin-bottom: 26px;border-bottom-width: 2px;border-bottom-style: solid;border-bottom-color: rgb(34, 34, 34);color: #111;font-weight: 400">
+                        <span
+                            style="text-transform: uppercase !important;display: inline-block;line-height: 17px;padding-top: 7px;padding-right: 12px;padding-bottom: 4px;padding-left: 12px;background-color: #222;color: #fff;text-align: left;font-family: 'Roboto',sans-serif;font-size: 14px;font-weight: 400;">
+                            MAKE IT MODERN
+                        </span>
+                    </h4>
+                    <div class="row">
+                        <div class="col">
+                            <img class="card-img-top" src="/src/Images/o.jpg" alt="Card image cap">
+                            <h5 class="card-title"
+                                style="padding: 7px 0 0;width: 100%;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;font-weight: 500 !important;font-size: 14px !important;">
+                                Urban Kitchen with Granite Tops, Exposed Bulb Lights and Island
+                            </h5>
+                            <div style="margin-top: 10px;">
+                                <img class="card-img-top" src="/src/Images/o.jpg" alt="Card image cap">
+                                <h5 class="card-title"
+                                    style="padding: 7px 0 0;width: 100%;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;font-weight: 500 !important;font-size: 14px !important;">
+                                    Luxe Hallway with Chess Table Flooring and Large Rounded Windows
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <img class="card-img-top" src="/src/Images/p.jpg" alt="Card image cap">
+                            <h5 class="card-title"
+                                style="padding: 7px 0 0;width: 100%;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;font-weight: 500 !important;font-size: 14px !important;">
+                                Modern Bathroom with Metro Rocks, Large Plant and Neutral Tiles
+                            </h5>
+                            <div style="margin-top: 10px;">
+                                <img class="card-img-top" src="/src/Images/o.jpg" alt="Card image cap">
+
+                                <h5 class="card-title"
+                                    style="padding: 7px 0 0;width: 100%;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;font-weight: 500 !important;font-size: 14px !important;">
+                                    Man Agrees to Complete $50,000 Hereford Lighthouse Paint Job
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- tech and Gadget -->
+        <div style="margin-top: 30px;">
+            <div class="row">
+                <div class="col-8"
+                    style="position: relative;font-family: 'Open Sans',arial,sans-serif;font-weight: 700;font-size: 11px;line-height: 21px;width: 100%;">
+                    <h4
+                        style="text-align: left;font-family: 'Roboto',sans-serif;font-size: 14px;line-height: 1;margin-top: 0;margin-bottom: 26px;border-bottom-width: 2px;border-bottom-style: solid;border-bottom-color: #f44336;color: #f44336;font-weight: 400">
+                        <span
+                            style="text-transform: uppercase !important;display: inline-block;line-height: 17px;padding-top: 7px;padding-right: 12px;padding-bottom: 4px;padding-left: 12px;background-color: #f44336;color: #fff;text-align: left;font-family: 'Roboto',sans-serif;font-size: 14px;font-weight: 400;text-transform: uppercase;">
+                            TECH AND GADGETS
+                        </span>
+                        <span style="text-align: right;float: right;">
+                            <ul class="nav flex-column flex-sm-row" id="myTab">
+                                <li class="nav-item">
+                                    <a class="flex-sm-fill text-sm-center nav-link active navlink2" id="all2-tab"
+                                        data-toggle="tab" href="#all2" role="tab" aria-controls="all2"
+                                        aria-selected="true">
+                                        All
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="flex-sm-fill text-sm-center nav-link navlink2" id="gadget-tab"
+                                        data-toggle="tab" href="#gadget" role="tab" aria-controls="gadget"
+                                        aria-selected="false">
+                                        Gadgets
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="flex-sm-fill text-sm-center nav-link navlink2" id="mobilephones-tab"
+                                        data-toggle="tab" href="#mobilephones" role="tab" aria-controls="mobilephones"
+                                        aria-selected="false">
+                                        Mobile Phones
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="flex-sm-fill text-sm-center nav-link navlink2" id="photography-tab"
+                                        data-toggle="tab" href="#photography" role="tab" aria-controls="photography"
+                                        aria-selected="false">
+                                        Photography
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="flex-sm-fill text-sm-center nav-link navlink2" id="reviews-tab"
+                                        data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
+                                        aria-selected="false">
+                                        Reviews
+                                    </a>
+                                </li>
+                            </ul>
+                        </span>
+                    </h4>
+
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="all2" role="tabpanel" aria-labelledby="all2-tab">
+                            <div class="row">
+                                <div class="col-md" title="Game Changing Virtual Reality Console Hits the Market">
+                                    <div>
+                                        <img style="width: 100%;" src="/src/Images/b.jpg" alt="">
+
+                                    </div>
+                                    <div
+                                        style="padding: 13px 0 0;width: 100%;margin-bottom: 0;z-index: 1;border: 0 solid #eaeaea;min-height: 0;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;display: block;">
+                                        <h3 class="fashioHover"
+                                            style="font-size: 21px;line-height: 25px;margin: 0 0 6px;word-wrap: break-word;font-weight: 400">
+                                            Game Changing Virtual Reality Console Hits the Market
+                                        </h3>
+                                        <div>
+                                            <span
+                                                style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                                <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                            </span>
+                                            <span>-</span>
+                                            <span style="color: #aaa;position: relative;top: 2px;">
+                                                <time>August 7, 2019</time>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                        We woke reasonably late following the feast and free flowing wine the night
+                                        before. After gathering ourselves and our packs, we...
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                <img src="/src/Images/t.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="fashioHover"
+                                                    style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Snapdragon Super Chip Mounted on the Latest Photo Cameras
+                                                </div>
+                                                <div style="margin-left: 10px; margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                <img src="/src/Images/u.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="fashioHover"
+                                                    style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    New Action Game Refreshed With a Premium Hi-Fi Sound
+                                                </div>
+                                                <div style="margin-left: 10px; margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                <img src="/src/Images/v.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="fashioHover"
+                                                    style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Sneak Peak: Best Smart Home Gadgets & Features of 2020
+                                                </div>
+                                                <div style="margin-left: 10px; margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                <img src="/src/Images/w.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="fashioHover"
+                                                    style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Reasons to Choose the New Generation Water Resistant Phones
+                                                </div>
+                                                <div style="margin-left: 10px; margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="gadget" role="tabpanel" aria-labelledby="gadget-tab">
+                            <div class="row">
+                                <div class="col-md" title="Game Changing Virtual Reality Console Hits the Market">
+                                    <div>
+                                        <img style="width: 100%;" src="/src/Images/b.jpg" alt="">
+
+                                    </div>
+                                    <div
+                                        style="padding: 13px 0 0;width: 100%;margin-bottom: 0;z-index: 1;border: 0 solid #eaeaea;min-height: 0;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;display: block;">
+                                        <h3 class="fashioHover"
+                                            style="font-size: 21px;line-height: 25px;margin: 0 0 6px;word-wrap: break-word;font-weight: 400">
+                                            Game Changing Virtual Reality Console Hits the Market
+                                        </h3>
+                                        <div>
+                                            <span
+                                                style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                                <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                            </span>
+                                            <span>-</span>
+                                            <span style="color: #aaa;position: relative;top: 2px;">
+                                                <time>August 7, 2019</time>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                        We woke reasonably late following the feast and free flowing wine the night
+                                        before. After gathering ourselves and our packs, we...
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                <img src="/src/Images/t.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="fashioHover"
+                                                    style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Snapdragon Super Chip Mounted on the Latest Photo Cameras
+                                                </div>
+                                                <div style="margin-left: 10px; margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                <img src="/src/Images/u.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="fashioHover"
+                                                    style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    New Action Game Refreshed With a Premium Hi-Fi Sound
+                                                </div>
+                                                <div style="margin-left: 10px; margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                <img src="/src/Images/v.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="fashioHover"
+                                                    style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Sneak Peak: Best Smart Home Gadgets & Features of 2020
+                                                </div>
+                                                <div style="margin-left: 10px; margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                <img src="/src/Images/w.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="fashioHover"
+                                                    style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Reasons to Choose the New Generation Water Resistant Phones
+                                                </div>
+                                                <div style="margin-left: 10px; margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="mobilephones" role="tabpanel" aria-labelledby="mobilephones-tab">
+                            <div class="row">
+                                <div class="col-md" title="Game Changing Virtual Reality Console Hits the Market">
+                                    <div>
+                                        <img style="width: 100%;" src="/src/Images/b.jpg" alt="">
+
+                                    </div>
+                                    <div
+                                        style="padding: 13px 0 0;width: 100%;margin-bottom: 0;z-index: 1;border: 0 solid #eaeaea;min-height: 0;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;display: block;">
+                                        <h3 class="fashioHover"
+                                            style="font-size: 21px;line-height: 25px;margin: 0 0 6px;word-wrap: break-word;font-weight: 400">
+                                            Game Changing Virtual Reality Console Hits the Market
+                                        </h3>
+                                        <div>
+                                            <span
+                                                style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                                <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                            </span>
+                                            <span>-</span>
+                                            <span style="color: #aaa;position: relative;top: 2px;">
+                                                <time>August 7, 2019</time>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                        We woke reasonably late following the feast and free flowing wine the night
+                                        before. After gathering ourselves and our packs, we...
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                <img src="/src/Images/t.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="fashioHover"
+                                                    style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Snapdragon Super Chip Mounted on the Latest Photo Cameras
+                                                </div>
+                                                <div style="margin-left: 10px; margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                <img src="/src/Images/u.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="fashioHover"
+                                                    style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    New Action Game Refreshed With a Premium Hi-Fi Sound
+                                                </div>
+                                                <div style="margin-left: 10px; margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                <img src="/src/Images/v.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="fashioHover"
+                                                    style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Sneak Peak: Best Smart Home Gadgets & Features of 2020
+                                                </div>
+                                                <div style="margin-left: 10px; margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                <img src="/src/Images/w.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="fashioHover"
+                                                    style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Reasons to Choose the New Generation Water Resistant Phones
+                                                </div>
+                                                <div style="margin-left: 10px; margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="photography" role="tabpanel" aria-labelledby="photography-tab">
+                            <div class="row">
+                                <div class="col-md" title="Game Changing Virtual Reality Console Hits the Market">
+                                    <div>
+                                        <img style="width: 100%;" src="/src/Images/b.jpg" alt="">
+
+                                    </div>
+                                    <div
+                                        style="padding: 13px 0 0;width: 100%;margin-bottom: 0;z-index: 1;border: 0 solid #eaeaea;min-height: 0;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;display: block;">
+                                        <h3 class="fashioHover"
+                                            style="font-size: 21px;line-height: 25px;margin: 0 0 6px;word-wrap: break-word;font-weight: 400">
+                                            Game Changing Virtual Reality Console Hits the Market
+                                        </h3>
+                                        <div>
+                                            <span
+                                                style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                                <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                            </span>
+                                            <span>-</span>
+                                            <span style="color: #aaa;position: relative;top: 2px;">
+                                                <time>August 7, 2019</time>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                        We woke reasonably late following the feast and free flowing wine the night
+                                        before. After gathering ourselves and our packs, we...
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                <img src="/src/Images/t.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="fashioHover"
+                                                    style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Snapdragon Super Chip Mounted on the Latest Photo Cameras
+                                                </div>
+                                                <div style="margin-left: 10px; margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                <img src="/src/Images/u.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="fashioHover"
+                                                    style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    New Action Game Refreshed With a Premium Hi-Fi Sound
+                                                </div>
+                                                <div style="margin-left: 10px; margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                <img src="/src/Images/v.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="fashioHover"
+                                                    style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Sneak Peak: Best Smart Home Gadgets & Features of 2020
+                                                </div>
+                                                <div style="margin-left: 10px; margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                <img src="/src/Images/w.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="fashioHover"
+                                                    style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Reasons to Choose the New Generation Water Resistant Phones
+                                                </div>
+                                                <div style="margin-left: 10px; margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                            <div class="row">
+                                <div class="col-md" title="Game Changing Virtual Reality Console Hits the Market">
+                                    <div>
+                                        <img style="width: 100%;" src="/src/Images/b.jpg" alt="">
+
+                                    </div>
+                                    <div
+                                        style="padding: 13px 0 0;width: 100%;margin-bottom: 0;z-index: 1;border: 0 solid #eaeaea;min-height: 0;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;display: block;">
+                                        <h3 class="fashioHover"
+                                            style="font-size: 21px;line-height: 25px;margin: 0 0 6px;word-wrap: break-word;font-weight: 400">
+                                            Game Changing Virtual Reality Console Hits the Market
+                                        </h3>
+                                        <div>
+                                            <span
+                                                style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                                <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                            </span>
+                                            <span>-</span>
+                                            <span style="color: #aaa;position: relative;top: 2px;">
+                                                <time>August 7, 2019</time>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                        We woke reasonably late following the feast and free flowing wine the night
+                                        before. After gathering ourselves and our packs, we...
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                <img src="/src/Images/t.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="fashioHover"
+                                                    style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Snapdragon Super Chip Mounted on the Latest Photo Cameras
+                                                </div>
+                                                <div style="margin-left: 10px; margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                <img src="/src/Images/u.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="fashioHover"
+                                                    style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    New Action Game Refreshed With a Premium Hi-Fi Sound
+                                                </div>
+                                                <div style="margin-left: 10px; margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                <img src="/src/Images/v.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="fashioHover"
+                                                    style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Sneak Peak: Best Smart Home Gadgets & Features of 2020
+                                                </div>
+                                                <div style="margin-left: 10px; margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                <img src="/src/Images/w.jpg" class="card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="fashioHover"
+                                                    style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                                    Reasons to Choose the New Generation Water Resistant Phones
+                                                </div>
+                                                <div style="margin-left: 10px; margin-top: 10px;">
+                                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                                        <time>August 7, 2019</time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4"
+                    style="position: relative;color: #000;font-family: 'Open Sans',arial,sans-serif;font-weight: 700;font-size: 11px;line-height: 21px;">
+                    <h4
+                        style="text-align: left;font-family: 'Roboto',sans-serif;font-size: 14px;line-height: 1;margin-top: 0;margin-bottom: 26px;border-bottom-width: 2px;border-bottom-style: solid;border-bottom-color: rgb(34, 34, 34);color: #111;font-weight: 400">
+                        <span
+                            style="text-transform: uppercase !important;display: inline-block;line-height: 17px;padding-top: 7px;padding-right: 12px;padding-bottom: 4px;padding-left: 12px;background-color: #222;color: #fff;text-align: left;font-family: 'Roboto',sans-serif;font-size: 14px;font-weight: 400;">
+                            latest Reviews
+                        </span>
+                    </h4>
+                    <div class="row">
+                        <div class="col-md" title="Game Changing Virtual Reality Console Hits the Market">
+                            <div>
+                                <img style="width: 100%;" src="/src/Images/x.jpg" alt="">
+                            </div>
+                            <div
+                                style="padding: 13px 0 0;width: 100%;margin-bottom: 0;z-index: 1;border: 0 solid #eaeaea;min-height: 0;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;display: block;">
+                                <h3 class="fashioHover"
+                                    style="font-size: 21px;line-height: 25px;margin: 0 0 6px;word-wrap: break-word;font-weight: 400">
+                                    Laptop with 128-bit Processor, 32GB of RAM and 24MP Front Camera
+                                </h3>
+                                <div>
+                                    <span style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                        <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                    </span>
+                                    <span>-</span>
+                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                        <time>August 7, 2019</time>
+                                    </span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                            </div>
+                            <div
+                                style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                We woke reasonably late following the feast and free flowing wine the night
+                                before. After gathering ourselves and our packs, we...
+                            </div>
+
+                            <div class="mb-3" style="max-width: 540px;">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img src="/src/Images/t.jpg" class="card-img" alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="fashioHover"
+                                            style="margin-left: 10px;font-size: 30px;width: 100%; margin-bottom: 0;z-index: 1;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 20px;font-weight: 20px;">
+                                            Article with woman in red sitting and relaxing
+                                        </div>
+                                        <div style="margin-left: 10px; margin-top: 10px;">
+                                            <span style="color: #aaa;position: relative;top: 2px;">
+                                                <time>August 7, 2019</time>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- performane training -->
+        <div style="margin-top: 30px;">
+            <div class="row">
+                <div class="col-8"
+                    style="position: relative;font-family: 'Open Sans',arial,sans-serif;font-weight: 700;font-size: 11px;line-height: 21px;width: 100%;">
+                    <h4
+                        style="text-align: left;font-family: 'Roboto',sans-serif;font-size: 14px;line-height: 1;margin-top: 0;margin-bottom: 26px;border-bottom-width: 2px;border-bottom-style: solid;border-bottom-color: #f44336;color: #f44336;font-weight: 400">
+                        <span
+                            style="text-transform: uppercase !important;display: inline-block;line-height: 17px;padding-top: 7px;padding-right: 12px;padding-bottom: 4px;padding-left: 12px;background-color: #f44336;color: #fff;text-align: left;font-family: 'Roboto',sans-serif;font-size: 14px;font-weight: 400;text-transform: uppercase;">
+                            Performance training
+                        </span>
+                    </h4>
+                    <div>
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="/src/Images/z.jpg" alt="" style="width: 100%;height: 100%;">
+                            </div>
+                            <div class="col-8">
+                                <div
+                                    style="padding: 13px 0 0;width: 100%;margin-bottom: 0;z-index: 1;border: 0 solid #eaeaea;min-height: 0;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;display: block;">
+                                    <h3 class="fashioHover"
+                                        style="font-size: 21px;line-height: 25px;margin: 0 0 6px;word-wrap: break-word;font-weight: 400">
+                                        KTM Marchetti Signs with Larranaga and Zanotti for Next Season
+                                    </h3>
+                                    <div>
+                                        <span
+                                            style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                            <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                        </span>
+                                        <span>-</span>
+                                        <span style="color: #aaa;position: relative;top: 2px;">
+                                            <time>August 7, 2019</time>
+                                        </span>
+                                    </div>
+                                    <div
+                                        style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                        We woke reasonably late following the feast and free flowing wine the night
+                                        before. After gathering ourselves and our packs, we...
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 30px;">
+                            <div class="col-4">
+                                <img src="/src/Images/za.jpg" alt="" style="width: 100%;height: 100%;">
+                            </div>
+                            <div class="col-8">
+                                <div
+                                    style="padding: 13px 0 0;width: 100%;margin-bottom: 0;z-index: 1;border: 0 solid #eaeaea;min-height: 0;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;display: block;">
+                                    <h3 class="fashioHover"
+                                        style="font-size: 21px;line-height: 25px;margin: 0 0 6px;word-wrap: break-word;font-weight: 400">
+                                        Celebrating 25 Years Since Italy’s First Ever Touring Inclusion
+                                    </h3>
+                                    <div>
+                                        <span
+                                            style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                            <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                        </span>
+                                        <span>-</span>
+                                        <span style="color: #aaa;position: relative;top: 2px;">
+                                            <time>August 7, 2019</time>
+                                        </span>
+                                    </div>
+                                    <div
+                                        style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                        We woke reasonably late following the feast and free flowing wine the night
+                                        before. After gathering ourselves and our packs, we...
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 30px;">
+                            <div class="col-4">
+                                <img src="/src/Images/zb.jpg" alt="" style="width: 100%;height: 100%;">
+                            </div>
+                            <div class="col-8">
+                                <div
+                                    style="padding: 13px 0 0;width: 100%;margin-bottom: 0;z-index: 1;border: 0 solid #eaeaea;min-height: 0;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;display: block;">
+                                    <h3 class="fashioHover"
+                                        style="font-size: 21px;line-height: 25px;margin: 0 0 6px;word-wrap: break-word;font-weight: 400">
+                                        Rumors, Gossip and Unfounded Truths: Every Moto Release Story
+                                    </h3>
+                                    <div>
+                                        <span
+                                            style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                            <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                        </span>
+                                        <span>-</span>
+                                        <span style="color: #aaa;position: relative;top: 2px;">
+                                            <time>August 7, 2019</time>
+                                        </span>
+                                    </div>
+                                    <div
+                                        style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                        We woke reasonably late following the feast and free flowing wine the night
+                                        before. After gathering ourselves and our packs, we...
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 30px;">
+                            <div class="col-4">
+                                <img src="/src/Images/zc.jpg" alt="" style="width: 100%;height: 100%;">
+                            </div>
+                            <div class="col-8">
+                                <div
+                                    style="padding: 13px 0 0;width: 100%;margin-bottom: 0;z-index: 1;border: 0 solid #eaeaea;min-height: 0;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;display: block;">
+                                    <h3 class="fashioHover"
+                                        style="font-size: 21px;line-height: 25px;margin: 0 0 6px;word-wrap: break-word;font-weight: 400">
+                                        Are you Ready? Complete Recap of the Streer Rally Action Shootout
+                                    </h3>
+                                    <div>
+                                        <span
+                                            style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                            <a href="#" style="text-decoration: none;color: black;">Armin Vans</a>
+                                        </span>
+                                        <span>-</span>
+                                        <span style="color: #aaa;position: relative;top: 2px;">
+                                            <time>August 7, 2019</time>
+                                        </span>
+                                    </div>
+                                    <div
+                                        style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                        We woke reasonably late following the feast and free flowing wine the night
+                                        before. After gathering ourselves and our packs, we...
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="col-4"
+                    style="position: relative;color: #000;font-family: 'Open Sans',arial,sans-serif;font-weight: 700;font-size: 11px;line-height: 21px;">
+                    <div class="text-center" style="margin-top: 20px;">
+                        <img src="https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/08/newspaper-rec300c.jpg"
+                            alt="">
+                    </div>
+                    <h4
+                        style="text-align: left;font-family: 'Roboto',sans-serif;font-size: 14px;line-height: 1;margin-top: 30px;margin-bottom: 26px;border-bottom-width: 2px;border-bottom-style: solid;border-bottom-color: rgb(34, 34, 34);color: #111;font-weight: 400">
+                        <span
+                            style="text-transform: uppercase !important;display: inline-block;line-height: 17px;padding-top: 7px;padding-right: 12px;padding-bottom: 4px;padding-left: 12px;background-color: #222;color: #fff;text-align: left;font-family: 'Roboto',sans-serif;font-size: 14px;font-weight: 400;">
+                            HOLIDAY RECIPES
+                        </span>
+                    </h4>
+                    <div class="row">
+                        <div class="col-md" title="Game Changing Virtual Reality Console Hits the Market">
+                            <div
+                                style="width: 100%;margin-bottom: 0;z-index: 1;border: 0 solid #eaeaea;min-height: 0;font-family: 'Open Sans',arial,sans-serif;font-size: 11px;line-height: 1;display: block;">
+                                <h3 class="fashioHover"
+                                    style="font-size: 21px;line-height: 25px;margin: 0 0 6px;word-wrap: break-word;font-weight: 400">
+                                    Everyone Should Travel for Their Favorite Foods
+                                </h3>
+                                <div>
+                                    <span style="display: inline-block;font-weight: 700;position: relative;top: 2px;">
+                                        <a href="#" style="text-decoration: none;color: black;">John Doe</a>
+                                    </span>
+                                    <span>-</span>
+                                    <span style="color: #aaa;position: relative;top: 2px;">
+                                        <time>August 7, 2019</time>
+                                    </span>
+                                </div>
+                            </div>
+                            <div>
+                                <img style="width: 100%; margin-top: 10px;" src="/src/Images/y.jpg" alt="">
+                            </div>
+                            <div
+                                style="margin-top: 16px;margin: 20px 0 0;line-height: 21px;color: #777;font-family: 'Open Sans',arial,sans-serif;">
+                                We woke reasonably late following the feast and free flowing wine the night
+                                before. After gathering ourselves and our packs, we...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Advertisement -->
+        <div
+            style="color: #bbb;font-size: 10px;text-align: center;display: block;font-family: Verdana,Geneva,sans-serif;line-height: 21px;">
+            <span>-
+                Advertisement -</span>
+            <div
+                style="position: relative;margin-bottom: 44px;display: table;text-align: center;margin-left: auto;margin-right: auto;font-size: 14px;line-height: 21px;">
+                <img src="https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/08/newspaper-rec728.jpg"
+                    style="width: 100%;height: 100%;" alt="">
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
