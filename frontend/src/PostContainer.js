@@ -3,9 +3,49 @@ import 'fa-icons';
 class PostsContainer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = { commentData: '', name: '', email: '', website: '', allComments: [] };
+        this.saveComment = this.saveComment.bind(this)
+    }
+    componentDidMount() {
+        fetch("http://localhost:3301/api/allComments").then(response => {
+            response.json().then(data => {
+                // alert("result is" + JSON.stringify(data))
+                if (data.commentStatus == "GetSuccess") {
+                    this.setState({ allComments: data.allComments })
+                }
+            })
+        })
+
+
+    }
+    saveComment(event) {
+        event.preventDefault()
+        const options = {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json;charset=UTF-8"
+            },
+            body: JSON.stringify({
+                Name: this.state.name,
+                Email: this.state.email,
+                CommentText: this.state.commentData,
+                Website: this.state.website
+            })
+        };
+        fetch("http://localhost:3301/api/saveComments", options).then(response => {
+            response.json().then(data => {
+                // alert("result is" + JSON.stringify(data))
+                if (data.commentStatus == "GetSuccess") {
+                    this.setState({ allComments: data.allComments,name:'',email:'',commentData:'',website:'' })
+                }
+            })
+        })
+
+
     }
     render() {
+        const { commentData, name, email, website } = this.state
         return (
             <div>
                 <nav aria-label="breadcrumb">
@@ -200,28 +240,57 @@ class PostsContainer extends React.Component {
                     </div>
                 </div>
 
+                <hr style={{ height: 1, backgroundColor: 'blue' }} />
+                <div class="text-center">{this.state.allComments.length} Comments</div>
+
+                {this.state.allComments.map((comment) => {
+                    return <div class="row py-4">
+                        <div class="col-2">
+                            <img src="/src/img1.jpg" alt="..." style={{ width: '100%' }} />
+                        </div>
+                        <div class="col-10">
+                            <h4 style={{ color: 'black' }}>{comment.Name}</h4>
+                            <span>{comment.CommentText}</span>
+
+                        </div>
+                    </div>
+                })}
+
                 <div class="my-4">
                     <span class="p-2 text-dark" style={{ textTransform: 'uppercase', fontWeight: 'bold' }}>
                         Leave a reply
                     </span>
                 </div>
 
+
+
+
+
+
                 <form class="my-4">
-                    <textarea class="form-control" rows="4" placeholder="Comment:" />
+                    <textarea class="form-control" rows="4" placeholder="Comment:"
+                        value={commentData} onChange={(event) => this.setState({ commentData: event.target.value })}
+                    />
 
-                    <input type="text" class="form-control my-4" placeholder="Name:" />
+                    <input type="text" class="form-control my-4" placeholder="Name:"
+                        value={name} onChange={(event) => this.setState({ name: event.target.value })} />
 
-                    <input type="email" class="form-control" placeholder="Email:" />
-                    <input type="text" class="form-control my-4" placeholder="Website:" />
+                    <input type="email" class="form-control" placeholder="Email:"
+                        value={email} onChange={(event) => this.setState({ email: event.target.value })} />
+                    <input type="text" class="form-control my-4" placeholder="Website:"
+                        value={website} onChange={(event) => this.setState({ website: event.target.value })}
+                    />
 
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" />
                         <label class="form-check-label" for="defaultCheck1">
-                        Save my name, email, and website in this browser for the next time I comment.
+                            Save my name, email, and website in this browser for the next time I comment.
                        </label>
                     </div>
 
-                    <button class="btn bg-dark text-white my-4">Post Comment</button>
+                    <button class="btn bg-dark text-white my-4"
+                        onClick={this.saveComment}
+                    >Post Comment</button>
                 </form>
 
                 {/* <div class="content">
